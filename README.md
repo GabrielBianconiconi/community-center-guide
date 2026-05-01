@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Community Center Guide
 
-## Getting Started
+## Requisitos
 
-First, run the development server:
+- Node.js 20 ou superior
+- npm
+
+## Instalar
+
+Entre na pasta do projeto:
+
+```bash
+cd community-center-guide
+```
+
+Se voce ja estiver em `C:\Users\gabri\Documents\stardew\community-center-guide`, rode:
+
+```bash
+npm install
+npm run download:images
+```
+
+## Rodar em desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O comando `npm run dev` usa Webpack para evitar problemas de memoria/root do Turbopack no Windows.
 
-## Learn More
+Se quiser testar Turbopack depois:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev:turbo
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Validar build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npm run build
+```
 
-## Deploy on Vercel
+## Variaveis de ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+No momento o projeto nao precisa de variaveis de ambiente.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Se algum dia precisar, copie `.env.example` para `.env` e preencha os valores locais.
+
+## Docker
+
+Antes de usar Docker, abra o Docker Desktop e espere ele ficar rodando.
+
+Baixe as imagens antes de criar a imagem Docker:
+
+```bash
+npm run download:images
+```
+
+Build da imagem:
+
+```bash
+docker build -t community-center-guide .
+```
+
+Rodar o container:
+
+```bash
+docker run --rm -p 3000:3000 community-center-guide
+```
+
+Ou com compose:
+
+```bash
+docker compose up --build
+```
+
+Acesse:
+
+```text
+http://localhost:3000
+```
