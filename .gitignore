@@ -22,7 +22,12 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
 # debug
 npm-debug.log*
@@ -35,6 +40,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# local caches
+.turbo/
 
 # typescript
 *.tsbuildinfo
