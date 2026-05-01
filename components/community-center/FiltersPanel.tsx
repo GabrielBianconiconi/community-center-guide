@@ -2,10 +2,10 @@ import type { Room, Season } from "@/lib/community-center";
 import { rooms, seasons } from "@/lib/community-center";
 
 type FiltersPanelProps = {
-  room: Room | "Todas";
-  season: Season | "Todas";
-  onRoomChange: (room: Room | "Todas") => void;
-  onSeasonChange: (season: Season | "Todas") => void;
+  room: Room | "All";
+  season: Season | "All";
+  onRoomChange: (room: Room | "All") => void;
+  onSeasonChange: (season: Season | "All") => void;
 };
 
 export function FiltersPanel({
@@ -19,12 +19,12 @@ export function FiltersPanel({
       <h2 className="text-lg font-black">Filtros</h2>
 
       <label className="mt-4 block text-sm font-bold" htmlFor="season">
-        Estacao
+        Season
       </label>
       <select
         className="mt-2 w-full rounded-md border-2 border-[#7c5534] bg-[#fffdf4] px-3 py-2 font-bold"
         id="season"
-        onChange={(event) => onSeasonChange(event.target.value as Season | "Todas")}
+        onChange={(event) => onSeasonChange(event.target.value as Season | "All")}
         value={season}
       >
         {seasons.map((option) => (
@@ -33,12 +33,12 @@ export function FiltersPanel({
       </select>
 
       <label className="mt-4 block text-sm font-bold" htmlFor="room">
-        Sala
+        Room
       </label>
       <select
         className="mt-2 w-full rounded-md border-2 border-[#7c5534] bg-[#fffdf4] px-3 py-2 font-bold"
         id="room"
-        onChange={(event) => onRoomChange(event.target.value as Room | "Todas")}
+        onChange={(event) => onRoomChange(event.target.value as Room | "All")}
         value={room}
       >
         {rooms.map((option) => (

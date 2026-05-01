@@ -31,18 +31,18 @@ function getInitialProgress(): Record<string, boolean> {
 
 function bundleMatchesFilters(
   bundle: Bundle,
-  season: Season | "Todas",
-  room: Room | "Todas",
+  season: Season | "All",
+  room: Room | "All",
 ) {
-  const byRoom = room === "Todas" || bundle.room === room;
+  const byRoom = room === "All" || bundle.room === room;
   const bySeason =
-    season === "Todas" || bundle.items.some((item) => item.season.includes(season));
+    season === "All" || bundle.items.some((item) => item.season.includes(season));
 
   return byRoom && bySeason;
 }
 
-function filterBundleItems(bundle: Bundle, season: Season | "Todas"): Bundle {
-  if (season === "Todas") {
+function filterBundleItems(bundle: Bundle, season: Season | "All"): Bundle {
+  if (season === "All") {
     return bundle;
   }
 
@@ -54,8 +54,8 @@ function filterBundleItems(bundle: Bundle, season: Season | "Todas"): Bundle {
 
 export function CommunityCenterApp() {
   const [completed, setCompleted] = useState<Record<string, boolean>>(getInitialProgress);
-  const [season, setSeason] = useState<Season | "Todas">("Todas");
-  const [room, setRoom] = useState<Room | "Todas">("Todas");
+  const [season, setSeason] = useState<Season | "All">("All");
+  const [room, setRoom] = useState<Room | "All">("All");
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(completed));
@@ -86,14 +86,14 @@ export function CommunityCenterApp() {
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-8 md:px-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#ffd77a]">
-              Stardew Valley - Ano 1
+              Stardew Valley - Year 1
             </p>
             <h1 className="mt-3 text-4xl font-black leading-tight sm:text-5xl">
-              Guia do Centro Comunitario
+              Community Center Guide
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-[#ffe9b1]">
-              Marque cada item entregue, filtre por estacao e use o roteiro para
-              terminar o Centro Comunitario ainda no primeiro ano.
+              Track every bundle item, filter by season, and follow a Year 1
+              route to finish the Community Center.
             </p>
           </div>
 

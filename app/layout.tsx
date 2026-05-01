@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Guia do Centro Comunitario",
-  description: "Checklist para completar o Centro Comunitario no Ano 1.",
+  title: "Community Center Guide",
+  description: "Checklist for completing the Community Center in Year 1.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt-BR"
+      lang="en"
       className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">{children}</body>

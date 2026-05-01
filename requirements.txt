@@ -1,4 +1,4 @@
-# Projeto Next.js/Node.js
-# Use este arquivo apenas como referencia de ambiente.
+# Next.js/Node.js project
+# Use this file only as an environment reference.
 node>=20
 npm

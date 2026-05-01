@@ -10,23 +10,23 @@ export type { Bundle, BundleItem, ItemWithBundle, Room, Season, YearPlan } from 
 export { getItemImageUrl } from "./images";
 export { yearOnePlan } from "./year-one-plan";
 
-export const seasons: Array<Season | "Todas"> = [
-  "Todas",
-  "Primavera",
-  "Verao",
-  "Outono",
-  "Inverno",
-  "Qualquer",
+export const seasons: Array<Season | "All"> = [
+  "All",
+  "Spring",
+  "Summer",
+  "Fall",
+  "Winter",
+  "Any",
 ];
 
-export const rooms: Array<Room | "Todas"> = [
-  "Todas",
-  "Artesanato",
-  "Despensa",
-  "Aquario",
-  "Sala da Caldeira",
-  "Quadro de Avisos",
-  "Cofre",
+export const rooms: Array<Room | "All"> = [
+  "All",
+  "Crafts Room",
+  "Pantry",
+  "Fish Tank",
+  "Boiler Room",
+  "Bulletin Board",
+  "Vault",
 ];
 
 export const bundles: Bundle[] = [

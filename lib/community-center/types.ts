@@ -1,12 +1,12 @@
-export type Season = "Primavera" | "Verao" | "Outono" | "Inverno" | "Qualquer";
+export type Season = "Spring" | "Summer" | "Fall" | "Winter" | "Any";
 
 export type Room =
-  | "Artesanato"
-  | "Despensa"
-  | "Aquario"
-  | "Sala da Caldeira"
-  | "Quadro de Avisos"
-  | "Cofre";
+  | "Crafts Room"
+  | "Pantry"
+  | "Fish Tank"
+  | "Boiler Room"
+  | "Bulletin Board"
+  | "Vault";
 
 export type BundleItem = {
   id: string;
@@ -33,7 +33,7 @@ export type ItemWithBundle = BundleItem & {
 };
 
 export type YearPlan = {
-  season: Exclude<Season, "Qualquer">;
+  season: Exclude<Season, "Any">;
   focus: string;
   tasks: string[];
 };

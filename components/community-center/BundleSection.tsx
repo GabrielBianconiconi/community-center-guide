@@ -27,8 +27,8 @@ export function BundleSection({
           <h2 className="text-2xl font-black">{bundle.name}</h2>
         </div>
         <p className="text-sm font-black text-[#72502f]">
-          {displayedDone} / {bundle.requiredCount} necessarios
-          {hasOptionalItems ? ` (${doneCount}/${bundle.items.length} marcados)` : ""}
+          {displayedDone} / {bundle.requiredCount} required
+          {hasOptionalItems ? ` (${doneCount}/${bundle.items.length} checked)` : ""}
         </p>
       </div>
 

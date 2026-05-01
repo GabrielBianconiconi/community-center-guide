@@ -36,7 +36,7 @@ export function BundleItemCard({ item, isDone, onToggle }: BundleItemCardProps) 
         <span className="flex items-start justify-between gap-2">
           <span className="text-base font-black">{item.name}</span>
           <span
-            aria-label={isDone ? "Concluido" : "Pendente"}
+            aria-label={isDone ? "Completed" : "Pending"}
             className={`grid h-6 w-6 shrink-0 place-items-center rounded-sm border-2 text-xs font-black ${
               isDone
                 ? "border-[#2f6f34] bg-[#4f9d47] text-white"

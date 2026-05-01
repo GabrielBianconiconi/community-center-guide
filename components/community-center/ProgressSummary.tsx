@@ -23,7 +23,7 @@ export function ProgressSummary({
         <p className="text-right text-sm font-bold">
           {completedCount} / {totalCount}
           <br />
-          itens necessarios
+          required items
         </p>
       </div>
       <div className="mt-4 h-4 overflow-hidden rounded-sm border-2 border-[#4e321f] bg-[#d7b16b]">
@@ -34,7 +34,7 @@ export function ProgressSummary({
         onClick={onClear}
         type="button"
       >
-        Limpar marcacoes
+        Clear progress
       </button>
     </div>
   );

@@ -1,87 +1,87 @@
 # Community Center Guide
 
-## Requisitos
+## Requirements
 
-- Node.js 20 ou superior
+- Node.js 20 or newer
 - npm
 
-## Instalar
+## Install
 
-Entre na pasta do projeto:
+Enter the project folder:
 
 ```bash
 cd community-center-guide
 ```
 
-Se voce ja estiver em `C:\Users\gabri\Documents\stardew\community-center-guide`, rode:
+If you are already in `C:\Users\gabri\Documents\stardew\community-center-guide`, run:
 
 ```bash
 npm install
 npm run download:images
 ```
 
-## Rodar em desenvolvimento
+## Development
 
 ```bash
 npm run dev
 ```
 
-Acesse:
+Open:
 
 ```text
 http://localhost:3000
 ```
 
-O comando `npm run dev` usa Webpack para evitar problemas de memoria/root do Turbopack no Windows.
+`npm run dev` uses Webpack to avoid Turbopack memory/root issues on Windows.
 
-Se quiser testar Turbopack depois:
+To test Turbopack later:
 
 ```bash
 npm run dev:turbo
 ```
 
-## Validar build
+## Validate Build
 
 ```bash
 npm run lint
 npm run build
 ```
 
-## Variaveis de ambiente
+## Environment Variables
 
-No momento o projeto nao precisa de variaveis de ambiente.
+The project does not require environment variables right now.
 
-Se algum dia precisar, copie `.env.example` para `.env` e preencha os valores locais.
+If that changes later, copy `.env.example` to `.env` and fill in local values.
 
 ## Docker
 
-Antes de usar Docker, abra o Docker Desktop e espere ele ficar rodando.
+Before using Docker, open Docker Desktop and wait until it is running.
 
-Baixe as imagens antes de criar a imagem Docker:
+Download images before building the Docker image:
 
 ```bash
 npm run download:images
 ```
 
-Build da imagem:
+Build the image:
 
 ```bash
 docker build -t community-center-guide .
 ```
 
-Rodar o container:
+Run the container:
 
 ```bash
 docker run --rm -p 3000:3000 community-center-guide
 ```
 
-Ou com compose:
+Or use compose:
 
 ```bash
 docker compose up --build
 ```
 
-Acesse:
+Open:
 
 ```text
 http://localhost:3000
