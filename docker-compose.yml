@@ -1,10 +1,27 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: community_center
+      POSTGRES_USER: community_center
+      POSTGRES_PASSWORD: community_center
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
   community-center-guide:
     build:
       context: .
     image: community-center-guide:latest
+    depends_on:
+      - postgres
     ports:
       - "3000:3000"
     environment:
+      DATABASE_URL: postgresql://community_center:community_center@postgres:5432/community_center
       NODE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
+
+volumes:
+  postgres-data:

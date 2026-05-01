@@ -22,6 +22,18 @@ npm run download:images
 
 ## Development
 
+If you want database-backed progress in local development, start Postgres first:
+
+```bash
+docker compose up -d postgres
+```
+
+Create `.env` from `.env.example` before starting Next:
+
+```bash
+copy .env.example .env
+```
+
 ```bash
 npm run dev
 ```
@@ -49,9 +61,9 @@ npm run build
 
 ## Environment Variables
 
-The project does not require environment variables right now.
+`DATABASE_URL` is used by the progress API.
 
-If that changes later, copy `.env.example` to `.env` and fill in local values.
+Without `DATABASE_URL`, progress still works in the current browser through `localStorage`.
 
 ## Docker
 

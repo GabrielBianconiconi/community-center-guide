@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   bundles,
   countCompletedRequiredItems,
@@ -15,6 +15,19 @@ import { ProgressSummary } from "./ProgressSummary";
 import { SeasonGuide } from "./SeasonGuide";
 
 const storageKey = "community-center-progress";
+const clientIdKey = "community-center-client-id";
+
+function getClientId() {
+  const saved = window.localStorage.getItem(clientIdKey);
+
+  if (saved) {
+    return saved;
+  }
+
+  const created = crypto.randomUUID();
+  window.localStorage.setItem(clientIdKey, created);
+  return created;
+}
 
 function getInitialProgress(): Record<string, boolean> {
   if (typeof window === "undefined") {
@@ -54,12 +67,66 @@ function filterBundleItems(bundle: Bundle, season: Season | "All"): Bundle {
 
 export function CommunityCenterApp() {
   const [completed, setCompleted] = useState<Record<string, boolean>>(getInitialProgress);
+  const [databaseReady, setDatabaseReady] = useState(false);
   const [season, setSeason] = useState<Season | "All">("All");
   const [room, setRoom] = useState<Room | "All">("All");
+  const clientIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(completed));
   }, [completed]);
+
+  useEffect(() => {
+    const id = getClientId();
+    clientIdRef.current = id;
+
+    async function loadProgress() {
+      try {
+        const response = await fetch(`/api/progress?clientId=${encodeURIComponent(id)}`);
+
+        if (!response.ok) {
+          throw new Error("Database progress is unavailable");
+        }
+
+        const data = await response.json();
+
+        if (data.completed) {
+          setCompleted(data.completed);
+          window.localStorage.setItem(storageKey, JSON.stringify(data.completed));
+        } else {
+          await fetch("/api/progress", {
+            body: JSON.stringify({ clientId: id, completed: getInitialProgress() }),
+            headers: { "content-type": "application/json" },
+            method: "PUT",
+          });
+        }
+
+        setDatabaseReady(true);
+      } catch {
+        setDatabaseReady(false);
+      }
+    }
+
+    void loadProgress();
+  }, []);
+
+  useEffect(() => {
+    const clientId = clientIdRef.current;
+
+    if (!clientId || !databaseReady) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => {
+      void fetch("/api/progress", {
+        body: JSON.stringify({ clientId, completed }),
+        headers: { "content-type": "application/json" },
+        method: "PUT",
+      });
+    }, 300);
+
+    return () => window.clearTimeout(timeout);
+  }, [completed, databaseReady]);
 
   const totalRequired = countRequiredItems(bundles);
   const completedRequired = countCompletedRequiredItems(bundles, completed);
